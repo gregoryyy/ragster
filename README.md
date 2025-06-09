@@ -1,2 +1,3 @@
-# ragster
-Ollama with RAG to testdrive newest lib versions 1y after Pitch2Canvas
+# RAG Pipeline
+
+Modular RAG system with Ollama, FAISS, metadata, and logic reasoning.
