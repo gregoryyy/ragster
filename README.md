@@ -17,22 +17,9 @@ This project is a modular, extensible **Retrieval-Augmented Generation (RAG)** s
 
 ---
 
-## 🚀 Features
-
-- Local LLM support via Ollama (e.g., Mistral, LLaMA 3, Deepseek-R1)
-- Vector indexing and retrieval with FAISS
-- External metadata mapping for traceable answers
-- Modular ingestion layer (PDFs, crawls, search results)
-- Easy to extend: reasoning, reranking, hybrid retrieval, UI
-
-- The system is meant to try out the latest openly accessible libraries
-- The result should replace previous work in Pitch2Canvas
-
----
-
 ## Design idea
 
-The main idea is to provide a private search assistant that uses LLMs to interact with plain text robustly and various services to enhance the model context, ontology to express structured knowledge 
+The main idea is to provide a private search assistant that uses LLMs to interact with plain text robustly and various services to enhance the model context, ontology to express structured knowledge and ground responses.
 
 Ragster is a modular, extensible framework for conducting deep, explainable, and automated research using local or remote language models. It integrates Retrieval-Augmented Generation (RAG), structured context handling, and logic-based reasoning to create a programmable system capable of querying, validating, and synthesizing information across a variety of sources.
 
@@ -51,6 +38,19 @@ At its core, Ragster aspires to:
 Ragster’s architecture is intentionally open and layered, enabling future growth from a simple terminal-based assistant into a full-blown research agent with logic-aware planning and inference.
 
 See `TODO.md` for details and status of implementation.
+
+---
+
+## Features
+
+- Local LLM support via Ollama (e.g., Mistral, LLaMA 3, Deepseek-R1)
+- Vector indexing and retrieval with FAISS
+- External metadata mapping for traceable answers
+- Modular ingestion layer (PDFs, crawls, search results)
+- Easy to extend: reasoning, reranking, hybrid retrieval, UI
+
+- The system is meant to try out the latest openly accessible libraries
+- The result should replace previous work in Pitch2Canvas
 
 ---
 
@@ -104,6 +104,7 @@ ollama serve
 Set the model in `config.yaml`, e.g.:
 
 ```yaml
+ollama_model: deepseek-r1:8b
 ollama_model: deepseek-r1:8b
 ```
 
