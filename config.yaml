@@ -1,3 +1,6 @@
-model: mistral
+# Configuration without secrets
+ollama_host: http://localhost:11434
+ollama_model: llama3.2:3b
+ollama_timeout: 60
 chunk_size: 500
 retrieval_top_k: 5
