@@ -1,6 +1,7 @@
 # if passwords and keys in .env file
 #.env
 .DS_Store
+*/**/.DS_Store
 __pycache__/
 venv/
 data/sources/*.pdf
