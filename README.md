@@ -35,6 +35,9 @@ At its core, Ragster aspires to:
 
 - Provide a foundation for deep research workflows — modeling research strategy as an ontology and enabling modular reuse, audit trails, and cross-source validation.
 
+- One moonshot STeams: This moves away from the LLM at the center but handle human interaction with a team of different agents (one being LLM).  STeams is based on more generic flow for interaction between human, structured knowledge in databases, semantic knowledge in ontologies, and LLM implicit knowledge, orchestrated by a strategy. Query is answered with a balance of maximal precision and knowledge in the overal system (given confidence targets).
+
+
 Ragster’s architecture is intentionally open and layered, enabling future growth from a simple terminal-based assistant into a full-blown research agent with logic-aware planning and inference.
 
 See `TODO.md` for details and status of implementation.
