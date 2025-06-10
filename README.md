@@ -1,59 +1,74 @@
-# Ragster = RAG testbed
+# Ragster -- A RAG testbed
 
-This project is a modular, extensible **Retrieval-Augmented Generation (RAG)** system that runs entirely locally using:
+Ragster is a modular, extensible system for conducting deep research using local or remote language models and a number of RAG sources. It integrates Retrieval-Augmented Generation (RAG), structured context handling, and symbolic reasoning to create a programmable system capable of querying, validating, and synthesizing information across a variety of sources. 
 
-- **Ollama** for LLM inference
-- **FAISS** for vector search
-- **Metadata and citation support**
-- ...
-- Modular ingestion from:
+Ragster’s architecture is intentionally open and layered, enabling future growth from a simple terminal-based assistant into a full-blown research agent with planning and real deductive reasoning that LLMs currently fail at.
+
+The basic version is simple local document-based RAG on Ollama (Mac). 
+
+More advanced functionality solves a few challenges with today's LLM and RAG systems:
+
+- **Explainability and hallucination busting**: A semantic reasoning extension to the implicit semantics and "simulated" reasoning in LLMs will bring a powerful way to integrate data from other sources, slash hallucinations and allow explainability. This is comparable to neurosymbolic approaches where an explicit representation of the world is kept in addition to a neural one.
+- **Confidence values** will give an estimate about how certain responses are. Even without LLM-based hallucinations the available knowledge in the may be contradictory. Measuring confidence is the key to resilient agentic use cases, currently not properly solved in LLM-based frameoworks.
+- **Flexible research** strategies generalize deep research to follow a generic task strategy to fulfill a set of objectives. For instance, they can ask back based on confidence. This may be further generalized to full agent workflows.
+- **Multilayer interaction** will allow users to give feedback and annotations to improve the models and organize their own documentation, e.g., by marking certain sections.
+- **Visualization and analytics displays** are embedded based on structured facts and derived statistics. Such visual modules can be added and called from the chat, e.g., explain a business model with an interactive flow diagram.
+
+Note: Developing this framework further lets LLMs move from center-stage to being one integral part of a multi-source data architecture -- the one that provides its robust features to interact with users as well as to structure and semantically interpret information from unstructured sources. We believe that using LLMs with their global knowledge is best when solving very focused tasks and with a semantically structured context, rather than trying to let LLMs "reason", which has been shown to be unstable at scale (empirically and theoretically). The main idea connected to this to aggregate the actual knowledge in the system in structured data backends and move it "out" of the LLM given enough structured evidence. There are still issues to be solved, but they can be tackled one at a time.
+
+This project should replace previous work in Pitch2Canvas that uses a LLM+semantic approach to analyze documents for a given structure (startup pitch deck) and targets (investment theses) and claims verification (RAG use case). It should become the basis of a powerful and flexible cutting-edge research engine.
+
+# Features
+
+Basic:
+
+- **Local LLM support** via Ollama (e.g., Mistral, LLaMA 3, Deepseek-R1)
+- **Vector embedding** for indexing and retrieval with FAISS
+- **Modular ingestion**:
   - Documents (PDF, TXT, HTML, Markdown)
   - Specific websites and crawls
-  - Search engine results (Serper, Brave, etc.)
-- CLI-based chat (web UI later)
-- Optional logic engine:
-  - Symbolic reasoning
-  - Formulation of analysis strategies
+  - Search engine results
+- The system is:
+  - meant to try out the latest openly accessible libraries
+  - Easy to extend: reasoning, reranking, hybrid retrieval, UI
 
----
+Advanced:
 
-## Design idea
+- **Metadata and reference support**
+  - Manual and automated metadata on provenance / traceable answers (data lineage)
+  - Inverted index to store references (cf. perplexity)
+  - Annotations at document and chunk level
+- **Interactive research**:
+  - Generalize deep research to ask back based on confidence
+  - Follow a generic task strategy to fulfill a set of objectives
+  - Further generalize the research to full agent workflows
+- **Advanced input**:
+  - Understand tables, images
+  - Understand textual and visual DSLs (based on format specifications)
+- **Multi-layered output**:
+  - Start with CLI
+  - Web UI and chat
+  - Enhanced output objects
+    - References (perplexity style)
+    - 😎 Structured diagrams
+    - Semantic annotations (including explanations)
+    - 😎 Interactive visualizations (following semantic content)
+- **User feedback**:
+  - Note: Interaction in most LLM frontends is flawed. We 
+  - 😎 Annotate prompt texts with semantic hints ("topics") to disambiguate and link to ontology
+  - 😎 Annotate chat objects (prompts, responses) for later human reuse ("snippets")
+  - 😎 Add correction and feedback metadata on existing responses (model improvement)
+  - 😎 Give visual feedback (diagrams; presentations; map to text and diagram location)
+- **Neurosymbolic reasoning engine**:
+  - Note: Large reasoning models (LRMs) iterate via outer-loop token-stream verifications. We use **true** reasoning.
+  - 😎 Logic (deductive) reasoning and probabilistic extensions for query context and response verification
+  - 😎 Explain prompts and (symbolic) reasoning path, estimate confidence
+  - 😎 Formulation of analysis strategies, generalizing deep research to multi-agent workflows
+  - Ontology / knowledge graph management from RAG sources
 
-The main idea is to provide a private search assistant that uses LLMs to interact with plain text robustly and various services to enhance the model context, ontology to express structured knowledge and ground responses.
-
-Ragster is a modular, extensible framework for conducting deep, explainable, and automated research using local or remote language models. It integrates Retrieval-Augmented Generation (RAG), structured context handling, and logic-based reasoning to create a programmable system capable of querying, validating, and synthesizing information across a variety of sources.
-
-At its core, Ragster aspires to:
-
-- Ingest information from diverse formats — including documents (PDF, EPUB, HTML, MD), websites, search results, and APIs.
-
-- Enrich retrieval with metadata and semantics — like provenance, inverse indexing, and knowledge graphs.
-
-- Support structured, auditable reasoning — through ontologies, rule-based inference, and formalized decision strategies.
-
-- Offer multiple interaction layers — from REPL to web UI and REST APIs, with future support for LangChain agents and conversational memory.
-
-- Provide a foundation for deep research workflows — modeling research strategy as an ontology and enabling modular reuse, audit trails, and cross-source validation.
-
-- One moonshot STeams: This moves away from the LLM at the center but handle human interaction with a team of different agents (one being LLM).  STeams is based on more generic flow for interaction between human, structured knowledge in databases, semantic knowledge in ontologies, and LLM implicit knowledge, orchestrated by a strategy. Query is answered with a balance of maximal precision and knowledge in the overal system (given confidence targets).
-
-
-Ragster’s architecture is intentionally open and layered, enabling future growth from a simple terminal-based assistant into a full-blown research agent with logic-aware planning and inference.
+Moonshot objective: "STeams" moves away from the LLM at the center but handle human interaction with a team of different agents (one being LLM).  STeams is based on more generic flow for interaction between human, structured knowledge in databases, semantic knowledge in ontologies, and LLM implicit knowledge, orchestrated by a strategy. A query is answered with a balance of maximal precision and knowledge in the overal system (given confidence targets).
 
 See `TODO.md` for details and status of implementation.
-
----
-
-## Features
-
-- Local LLM support via Ollama (e.g., Mistral, LLaMA 3, Deepseek-R1)
-- Vector indexing and retrieval with FAISS
-- External metadata mapping for traceable answers
-- Modular ingestion layer (PDFs, crawls, search results)
-- Easy to extend: reasoning, reranking, hybrid retrieval, UI
-
-- The system is meant to try out the latest openly accessible libraries
-- The result should replace previous work in Pitch2Canvas
 
 ---
 
