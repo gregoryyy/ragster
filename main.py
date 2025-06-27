@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from ingest.document_loader import load_pdf
 from ingest.utils import chunk_text
 from core.embedder import embed

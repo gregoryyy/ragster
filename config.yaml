@@ -1,6 +1,18 @@
 # Configuration without secrets
-ollama_host: http://localhost:11434
-ollama_model: llama3.2:3b
-ollama_timeout: 60
-chunk_size: 500
-retrieval_top_k: 5
+
+# parameters for local ollama
+ollama:
+  host: http://localhost:11434
+  model: llama3.2:3b
+  timeout: 60
+
+# ingestion
+ingest:
+  chunk_size: 500
+  retrieval_top_k: 5
+
+# embedding
+embed:
+  # sentence transformer
+  st_model: all-MiniLM-L6-v2
+

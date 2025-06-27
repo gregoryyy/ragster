@@ -14,9 +14,9 @@ def query_ollama(context, question):
         str: The generated answer or an error message.
     """
     config = get_config()
-    model = config.get("ollama_model", "llama3")
-    timeout = int(config.get("ollama_timeout", 60))
-    host = config.get("ollama_host", "http://localhost:11434")
+    model = config.ollama.model
+    timeout = int(config.ollama.timeout)
+    host = config.ollama.host
 
     url = f"{host}/api/generate"
 

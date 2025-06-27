@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
+from config import get_config
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer(get_config().embed.st_model)
 
 def embed(texts):
     return model.encode(texts)
